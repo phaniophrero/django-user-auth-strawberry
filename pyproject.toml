@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "backend"
+version = "0.1.0"
+description = ""
+authors = ["Nir <88795475+nrbnlulu@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python =">=3.10,<3.12"
+strawberry-django-auth = {extras = ["captcha"], version = "^0.375.0"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

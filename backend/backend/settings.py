@@ -37,7 +37,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "corsheaders",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,7 +53,6 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -181,10 +179,12 @@ GQL_AUTH = GqlAuthSettings(
     REGISTER_REQUIRE_CAPTCHA=False,
     ALLOW_LOGIN_NOT_VERIFIED=False,
     # JWT_PAYLOAD_PK=field(default_factory=lambda: email_field),
-    LOGIN_FIELDS=set([email_field, password_field]),
+    LOGIN_FIELDS={email_field, password_field},
     # ACTIVATION_PATH_ON_EMAIL="confirm",
-    REGISTER_MUTATION_FIELDS=set([email_field, first_name_field, last_name_field, date_of_birth_field, phone_field, country_field, city_field, zip_code_field]),
-    UPDATE_MUTATION_FIELDS=set([first_name_field, last_name_field, phone_field, country_field, city_field, zip_code_field]),
+    REGISTER_MUTATION_FIELDS={email_field, first_name_field, last_name_field, date_of_birth_field, phone_field,
+                              country_field, city_field, zip_code_field},
+    UPDATE_MUTATION_FIELDS={first_name_field, last_name_field, phone_field, country_field, city_field, zip_code_field},
+    JWT_PAYLOAD_PK=email_field,
     EMAIL_TEMPLATE_VARIABLES={
         'site_name': 'Real Trading 23',
         'protocol': 'http',
